@@ -21,7 +21,7 @@
                         <div class="card-content collapse show">
                             <div class="card-body">
                                 <form class="form" action="{{ route('ayam.store') }}" enctype="multipart/form-data"
-                                    method="POST">
+                                    method="POST" id="form">
                                     @csrf
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12">

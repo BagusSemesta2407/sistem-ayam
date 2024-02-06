@@ -26,8 +26,8 @@
                                             <th>No</th>
                                             <th>Kandang</th>
                                             <th>Jenis Ayam</th>
+                                            <th>Kode Ayam</th>
                                             <th>Tanggal Masuk</th>
-                                            <th>Status Ayam</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,8 +36,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->kandang->kode_kandang }}</td>
                                             <td>{{ $item->kandang->ayam->jenis }}</td>
-                                            <td>{{ $item->tanggal_masuk }}</td>
-                                            <td></td>
+                                            <td>{{ $item->kode_ayam }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->tanggal_masuk)->translatedFormat('d F Y') }}</td>
                                             {{-- <td class="d-flex">
                                                 <a href="{{ route('kelola-pemasukan-inventaris.edit-pemasukan-inventaris', $item->id) }}">
                                                     <button type="button" class="btn btn-icon btn-warning mr-1"><i

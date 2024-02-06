@@ -68,7 +68,7 @@ Route::group([
 Route::group([
     'as' => 'pemasukan-ayam.',
     'prefix' => 'pemasukan-ayam'
-], function() {
+], function () {
     Route::get('new-data-ayam', [PemasukanAyamController::class, 'create'])->name('new-data-ayam');
     Route::post('new-data-ayam', [PemasukanAyamController::class, 'store'])->name('store-new-data-ayam');
 });
@@ -76,7 +76,7 @@ Route::group([
 Route::group([
     'as' => 'kelola-pemasukan-ayam.',
     'prefix' => 'kelola-pemasukan-ayam'
-], function(){
+], function () {
     Route::get('form-tanggal', [KelolaPemasukanAyamController::class, 'formTanggal'])->name('form-tanggal');
     Route::post('form-tanggal', [KelolaPemasukanAyamController::class, 'requestTanggal'])->name('request-tanggal');
 });
@@ -84,7 +84,7 @@ Route::group([
 Route::group([
     'as' => 'laporan-pemasukan-ayam.',
     'prefix' => 'laporan-pemasukan-ayam'
-], function(){
+], function () {
     Route::get('report', [LaporanPemasukanAyamController::class, 'index'])->name('report-pemasukan-ayam');
 });
 
@@ -117,7 +117,7 @@ Route::group(
 Route::group([
     'as' => 'produksi.',
     'prefix' => 'produksi'
-], function(){
+], function () {
     Route::get('create', [ProduksiController::class, 'create'])->name('create-produksi');
     Route::post('store', [ProduksiController::class, 'store'])->name('store-produksi');
 });
@@ -125,7 +125,7 @@ Route::group([
 Route::group([
     'as' => 'kelola-produksi.',
     'prefix' => 'kelola-produksi'
-], function(){
+], function () {
     Route::get('form-tanggal', [KelolaProduksiController::class, 'formTanggal'])->name('form-tanggal');
     Route::post('data', [KelolaProduksiController::class, 'requestTanggal'])->name('request-tanggal');
 });
@@ -133,6 +133,6 @@ Route::group([
 Route::group([
     'as' => 'laporan-produksi.',
     'prefix' => 'laporan-produksi',
-], function(){
+], function () {
     Route::get('report', [LaporanProduksiController::class, 'index'])->name('report');
 });

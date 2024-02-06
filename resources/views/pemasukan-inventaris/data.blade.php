@@ -45,12 +45,9 @@
                                                             class="fa fa-pencil"></i></button>
                                                 </a>
 
-                                                <form action="{{ route('kelola-pemasukan-inventaris.destroy-pemasukan-inventaris', $item->id) }}" method="POST">
-                                                    @method('DELETE')
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-icon btn-danger mr-1"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </form>
+                                                <button class="btn btn-icon btn-danger mr-1 delete" data-url="{{ route('kelola-pemasukan-inventaris.destroy-pemasukan-inventaris', $item->id) }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         @endforeach

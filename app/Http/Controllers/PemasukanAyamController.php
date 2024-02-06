@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PemasukanAyamRequest;
 use App\Models\Kandang;
 use App\Models\PemasukanAyam;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class PemasukanAyamController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(PemasukanAyamRequest $request)
     {
         $requestData = $request->all();
 
@@ -40,6 +41,6 @@ class PemasukanAyamController extends Controller
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->withSuccess('Data berhasil ditambahkan');
     }
 }

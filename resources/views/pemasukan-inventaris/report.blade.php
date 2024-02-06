@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('title')
-    Data Kandang
+    Data Pemasukan Inventaris
 @endsection
 @section('content')
     <div class="content-body mt-2">
@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Daftar Kandang</h4>
+                            <h4 class="card-title">Daftar Pemasukan Inventaris (Bahan Makanan/Obat)</h4>
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -32,13 +32,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($pemasukanInventaris as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($item->waktu)->translatedFormat('d F Y') }}</td>
-                                            <td>{{ $item->inventaris->nama }}</td>
-                                            <td>{{ $item->kuantitas }}</td>
-                                            <td>{{ $item->satuan }}</td>
-                                        </tr>
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($item->waktu)->translatedFormat('d F Y') }}
+                                                </td>
+                                                <td>{{ $item->inventaris->nama }}</td>
+                                                <td>{{ $item->kuantitas }}</td>
+                                                <td>{{ $item->satuan }}</td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

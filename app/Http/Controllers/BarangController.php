@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BarangRequest;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 
@@ -30,14 +31,14 @@ class BarangController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BarangRequest $request)
     {
         Barang::create([
             'nama' => $request->nama,
             'jumlah' => $request->jumlah
         ]);
 
-        return redirect()->route('barang.index');
+        return redirect()->route('barang.index')->withSuccess('Data berhasil ditambahkan');
     }
 
     /**
@@ -72,7 +73,7 @@ class BarangController extends Controller
 
         Barang::where('id', $barang->id)->update($data);
 
-        return redirect()->route('barang.index');
+        return redirect()->route('barang.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -83,6 +84,6 @@ class BarangController extends Controller
         $barang = Barang::find($barang->id);
         $barang->delete();
 
-        return redirect()->back();
+        return response()->json(['success', 'Data Berhasil Dihapus']);
     }
 }

@@ -59,19 +59,28 @@
                                             novalidate>
                                             @csrf
                                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                                <input type="text" class="form-control form-control-lg input-lg"
-                                                    id="user-name" placeholder="Your Email" name="email" required>
+                                                <input type="text" class="form-control form-control-lg input-lg @error('email')
+                                                    is-invalid
+                                                @enderror"
+                                                    id="user-name" placeholder="Your Email" name="email">
                                                 <div class="form-control-position">
                                                     <i class="ft-user"></i>
                                                 </div>
+                                                @error('email')
+                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                @enderror
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="password" class="form-control form-control-lg input-lg"
-                                                    id="user-password" placeholder="Enter Password" name="password"
-                                                    required>
+                                                <input type="password" class="form-control form-control-lg input-lg @error('password')
+                                                    is-invalid
+                                                @enderror"
+                                                    id="user-password" placeholder="Enter Password" name="password">
                                                 <div class="form-control-position">
                                                     <i class="fa fa-key"></i>
                                                 </div>
+                                                @error('password')
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @enderror
                                             </fieldset>
                                             <button type="submit" class="btn btn-info btn-lg btn-block"><i
                                                     class="ft-unlock"></i> Login</button>

@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('ayam.update', $ayam) }}" enctype="multipart/form-data" method="POST">
+                                <form class="form" id="form" action="{{ route('ayam.update', $ayam) }}" enctype="multipart/form-data" method="POST">
                                     @method('PUT')
                                     @csrf
                                     <div class="row justify-content-md-center">

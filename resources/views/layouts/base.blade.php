@@ -68,7 +68,6 @@
         </div>
     </div>
 
-    @include('layouts.footer')
 
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
@@ -122,7 +121,7 @@
     </script>
 
     <script>
-        $('.form').submit(function(e) {
+        $('#form').submit(function(e) {
             let form = this;
             e.preventDefault();
 

@@ -71,7 +71,7 @@ class AyamController extends Controller
 
         Ayam::where('id', $ayam->id)->update($data);
 
-        return redirect()->route('ayam.index');
+        return redirect()->route('ayam.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -83,7 +83,6 @@ class AyamController extends Controller
 
         $ayam->delete();
 
-        // return redirect()->back();
         return response()->json(['success', 'Data Berhasil Dihapus']);
     }
 }

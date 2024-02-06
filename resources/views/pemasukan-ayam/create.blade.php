@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('pemasukan-ayam.store-new-data-ayam') }}" enctype="multipart/form-data"
+                                <form class="form" id="form" action="{{ route('pemasukan-ayam.store-new-data-ayam') }}" enctype="multipart/form-data"
                                     method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
@@ -28,23 +28,41 @@
                                             <div class="form-body">
                                                 <div class="form-group">
                                                     <label for="eventInput1">Kandang</label>
-                                                    <select name="kandang_id" class="form-control">
+                                                    <select name="kandang_id" class="form-control @error('kandang_id')
+                                                        is-invalid
+                                                    @enderror">
                                                         <option value="" selected disabled>Pilih Kandang</option>
                                                         @foreach ($kandang as $item)
                                                             <option value="{{ $item->id }}">{{ $item->kode_kandang }}</option>
                                                         @endforeach
                                                     </select>
+
+                                                    @error('kandang_id')
+                                                        <span class="text-danger">{{ $errors->first('kandang_id') }}</span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="eventInput1">Tanggal Masuk</label>
-                                                    <input type="date" id="eventInput1" class="form-control" name="tanggal_masuk">
+                                                    <input type="date" id="eventInput1" class="form-control @error('tanggal_masuk')
+                                                        is-invalid
+                                                    @enderror" name="tanggal_masuk">
+
+                                                    @error('tanggal_masuk')
+                                                        <span class="text-danger">{{ $errors->first('tanggal_masuk') }}</span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <h5>Jumlah Ayam</h5>
                                                     <div class="controls">
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control touchspin" name="jumlah_ayam" required />
+                                                            <input type="number" class="form-control touchspin @error('jumlah_ayam')
+                                                                is-invalid
+                                                            @enderror" name="jumlah_ayam"  />
+
                                                         </div>
+                                                        @error('jumlah_ayam')
+                                                            <span class="text-danger">{{ $errors->first('jumlah_ayam') }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>

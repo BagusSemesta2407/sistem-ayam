@@ -20,26 +20,40 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('kandang.store') }}" enctype="multipart/form-data"
-                                    method="POST">
+                                <form class="form" id="form" action="{{ route('kandang.store') }}"
+                                    enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12">
                                             <div class="form-body">
                                                 <div class="form-group">
                                                     <label for="eventInput1">Jenis Ayam</label>
-                                                    <select name="ayam_id" class="form-control">
+                                                    <select name="ayam_id"
+                                                        class="form-control @error('ayam_id')
+                                                        is-invalid
+                                                    @enderror">
                                                         <option value="" selected disabled>Pilih Jenis Ayam</option>
                                                         @foreach ($ayam as $item)
                                                             <option value="{{ $item->id }}">{{ $item->jenis }}</option>
                                                         @endforeach
                                                     </select>
+
+                                                    @error('ayam_id')
+                                                        <span class="text-danger">{{ $errors->first('ayam_id') }}</span>
+                                                    @enderror
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="eventInput1">Kapasitas</label>
-                                                    <input type="number" id="eventInput1" class="form-control"
+                                                    <input type="number" id="eventInput1"
+                                                        class="form-control @error('kapasitas')
+                                                        is-invalid
+                                                    @enderror"
                                                         placeholder="Masukkan Kapasitas" name="kapasitas">
+
+                                                    @error('kapasitas')
+                                                        <span class="text-danger">{{ $errors->first('kapasitas') }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

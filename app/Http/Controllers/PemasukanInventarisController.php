@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PemasukanInventarisRequest;
 use App\Models\Inventaris;
 use App\Models\PemasukanInventaris;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class PemasukanInventarisController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PemasukanInventarisRequest $request)
     {
         PemasukanInventaris::create([
             'inventaris_id' => $request->inventaris_id,
@@ -31,7 +32,7 @@ class PemasukanInventarisController extends Controller
             'satuan' => $request->satuan,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->withSuccess('Data berhasil ditambahkan, silahkan lakukan tambah data ulang jika diperlukan!');
     }
 
     /**

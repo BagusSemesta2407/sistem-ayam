@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TanggalPemasukanInventarisRequest;
 use App\Models\Inventaris;
 use App\Models\PemasukanInventaris;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class KelolaPemasukanInventarisController extends Controller
         return view('pemasukan-inventaris.index');
     }
 
-    public function requestTimeIndex(Request $request)
+    public function requestTimeIndex(TanggalPemasukanInventarisRequest $request)
     {
         $pemasukanInventaris = PemasukanInventaris::where('waktu', $request->waktu)->get();
 
@@ -61,6 +62,6 @@ class KelolaPemasukanInventarisController extends Controller
         $pemasukanInventaris = PemasukanInventaris::find($id);
         $pemasukanInventaris->delete();
 
-        return redirect()->back();
+        return response()->json(['success', 'Data Berhasil Dihapus']);
     }
 }

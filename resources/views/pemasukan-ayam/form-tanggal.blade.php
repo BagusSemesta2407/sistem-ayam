@@ -19,13 +19,21 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('kelola-pemasukan-ayam.request-tanggal') }}" method="post">
+                                <form class="form" action="{{ route('kelola-pemasukan-ayam.request-tanggal') }}"
+                                    method="post">
                                     @csrf
                                     <div class="form-body">
                                         <div class="form-group">
                                             <label for="eventRegInput1">Pilih Tanggal Masuk</label>
-                                            <input type="date" id="eventRegInput1" class="form-control"
+                                            <input type="date" id="eventRegInput1"
+                                                class="form-control @error('tanggal_masuk')
+                                                is-invalid
+                                            @enderror"
                                                 placeholder="name" name="tanggal_masuk">
+
+                                            @error('tanggal_masuk')
+                                                <span class="text-danger">{{ $errors->first('tanggal_masuk') }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 

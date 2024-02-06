@@ -51,7 +51,7 @@ class ProduksiController extends Controller
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->withSuccess('Data berhasil ditambahkan');
         
     }
 }

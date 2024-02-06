@@ -20,21 +20,31 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('barang.store') }}" enctype="multipart/form-data"
-                                    method="POST">
+                                <form class="form" id="form" action="{{ route('barang.store') }}"
+                                    enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12">
                                             <div class="form-body">
                                                 <div class="form-group">
                                                     <label for="eventInput1">Nama Barang</label>
-                                                    <input type="text" id="eventInput1" class="form-control"
+                                                    <input type="text" id="eventInput1" class="form-control @error('nama')
+                                                        is-invalid
+                                                    @enderror "
                                                         placeholder="Masukkan Nama Barang" name="nama">
+                                                    @error('nama')
+                                                        <span class="text-danger">{{ $errors->first('nama') }}</span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="eventInput1">Jumlah Barang</label>
-                                                    <input type="number" id="eventInput1" class="form-control"
+                                                    <input type="number" id="eventInput1" class="form-control @error('jumlah')
+                                                        is-invalid
+                                                    @enderror"
                                                         placeholder="Masukkan Jumlah Barang" name="jumlah">
+                                                    @error('jumlah')
+                                                        <span class="text-danger">{{ $errors->first('jumlah') }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

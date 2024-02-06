@@ -24,8 +24,13 @@
                                     <div class="form-body">
                                         <div class="form-group">
                                             <label for="eventRegInput1">Pilih Tanggal</label>
-                                            <input type="date" id="eventRegInput1" class="form-control"
+                                            <input type="date" id="eventRegInput1" class="form-control @error('waktu')
+                                                is-invalid
+                                            @enderror"
                                                 placeholder="name" name="waktu">
+                                                @error('waktu')
+                                                    <span class="text-danger">{{ $errors->first('waktu') }}</span>
+                                                @enderror
                                         </div>
                                     </div>
 

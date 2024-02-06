@@ -40,19 +40,16 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode_kandang }}</td>
                                             <td>{{ $item->ayam->jenis }}</td>
-                                            <td>{{ $item->kapasitas }}</td>
+                                            <td>{{ $item->kapasitas - $item->pemasukanAyam->sum('kandang_id')  }}</td>
                                             <td class="d-flex">
                                                 <a href="{{ route('kandang.edit', $item->id) }}">
                                                     <button type="button" class="btn btn-icon btn-warning mr-1"><i
                                                             class="fa fa-pencil"></i></button>
                                                 </a>
 
-                                                <form action="{{ route('kandang.destroy', $item->id) }}" method="POST">
-                                                    @method('DELETE')
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-icon btn-danger mr-1"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </form>
+                                                <button class="btn btn-icon btn-danger mr-1 delete" data-url="{{ route('kandang.destroy', $item->id) }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('kelola-pemasukan-inventaris.update-pemasukan-inventaris', $pemasukanInventaris) }}" enctype="multipart/form-data" method="POST">
+                                <form class="form" id="form" action="{{ route('kelola-pemasukan-inventaris.update-pemasukan-inventaris', $pemasukanInventaris) }}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12">

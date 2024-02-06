@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KandangRequest;
 use App\Models\Ayam;
 use App\Models\Kandang;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class KandangController extends Controller
      */
     public function index()
     {
-        $kandang = Kandang::all();
+        $kandang = Kandang::with('pemasukanAyam')->get();
         return view('kandang.index', [
             'kandang' => $kandang,
         ]);
@@ -33,7 +34,7 @@ class KandangController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(KandangRequest $request)
     {
         $kandang= Kandang::create([
             'ayam_id' => $request->ayam_id,
@@ -44,7 +45,7 @@ class KandangController extends Controller
             'kode_kandang' =>  'KDG-'.sprintf("%03d",$kandang->id),
         ]);
 
-        return redirect()->route('kandang.index');
+        return redirect()->route('kandang.index')->withSuccess('Data berhasil ditambahkan');
     }
 
     /**
@@ -81,7 +82,7 @@ class KandangController extends Controller
 
         Kandang::where('id', $kandang->id)->update($data);
 
-        return redirect()->route('kandang.index');
+        return redirect()->route('kandang.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -92,6 +93,6 @@ class KandangController extends Controller
         $kandang = Kandang::find($kandang->id);
         $kandang->delete();
 
-        return redirect()->back();
+        return response()->json(['success', 'Data Berhasil Dihapus']);
     }
 }

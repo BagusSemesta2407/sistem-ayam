@@ -43,12 +43,6 @@
                                                                 class="fa fa-pencil"></i></button>
                                                     </a>
 
-                                                    {{-- <form action="{{ route('ayam.destroy', $item->id) }}" method="POST">
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-icon btn-danger mr-1"><i
-                                                                class="fa fa-trash"></i></button>
-                                                    </form> --}}
                                                     <button class="btn btn-icon btn-danger mr-1 delete" data-url="{{ route('ayam.destroy', $item->id) }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>

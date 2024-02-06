@@ -20,16 +20,21 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('inventaris.store') }}" enctype="multipart/form-data"
-                                    method="POST">
+                                <form class="form" id="form" action="{{ route('inventaris.store') }}"
+                                    enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12">
                                             <div class="form-body">
                                                 <div class="form-group">
                                                     <label for="eventInput1">Nama Makanan/Obat</label>
-                                                    <input type="text" id="eventInput1" class="form-control"
-                                                        placeholder="Masukkan Nama Makanan/Obat" name="nama">
+                                                    <input type="text" id="eventInput1"
+                                                        class="form-control @error('nama')
+                                                    is-invalid
+                                                    @enderror" placeholder="Masukkan Nama Makanan/Obat" name="nama">
+                                                    @error('nama')
+                                                        <span class="text-danger">{{ $errors->first('nama') }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

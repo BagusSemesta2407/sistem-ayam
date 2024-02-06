@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InventarisRequest;
 use App\Models\Inventaris;
 use App\Models\PemasukanInventaris;
 use Illuminate\Http\Request;
@@ -31,13 +32,13 @@ class InventarisController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(InventarisRequest $request)
     {
         Inventaris::create([
             'nama' => $request->nama,
         ]);
 
-        return redirect()->route('inventaris.index');
+        return redirect()->route('inventaris.index')->withSuccess('Data berhasil ditambahkan');
     }
 
     /**
@@ -71,7 +72,7 @@ class InventarisController extends Controller
 
         Inventaris::where('id', $id)->update($data);
 
-        return redirect()->route('inventaris.index');
+        return redirect()->route('inventaris.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -83,6 +84,6 @@ class InventarisController extends Controller
 
         $inventaris->delete();
 
-        return redirect()->back();
+        return response()->json(['success', 'Data Berhasil Dihapus']);
     }
 }
