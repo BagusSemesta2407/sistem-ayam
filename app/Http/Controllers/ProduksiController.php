@@ -18,6 +18,14 @@ class ProduksiController extends Controller
 
     public function store(Request $request)
     {
+        if ($request['status_normal']) {
+            Produksi::create([
+                'kandang_id' => $request->kandang_id,
+                'tanggal' => $request->tanggal,
+                'kuantitas' => $request->status_normal,
+                'status' => 'Normal'
+            ]);
+        }
         if ($request['status_busuk']) {
             Produksi::create([
                 'kandang_id' => $request->kandang_id,

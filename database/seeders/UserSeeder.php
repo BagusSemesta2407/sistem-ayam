@@ -14,17 +14,17 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'name' => 'Admin',
+            'name' => 'admin',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('admin')
         ]);
 
         $admin->assignRole('admin');
 
         $user = User::create([
-            'name' => 'User',
+            'name' => 'user',
             'email' => 'user@user.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('user')
         ]);
 
         $user->assignRole('user');

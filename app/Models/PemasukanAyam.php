@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PemasukanAyam extends Model
 {
@@ -25,5 +26,15 @@ class PemasukanAyam extends Model
     public function kandang(): BelongsTo
     {
         return $this->belongsTo(Kandang::class);
+    }
+
+    /**
+     * Get all of the pengeluaranAyam for the PemasukanAyam
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pengeluaranAyam(): HasMany
+    {
+        return $this->hasMany(PengeluaranAyam::class);
     }
 }

@@ -59,15 +59,15 @@
                                             novalidate>
                                             @csrf
                                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                                <input type="text" class="form-control form-control-lg input-lg @error('email')
+                                                <input type="text" class="form-control form-control-lg input-lg @error('name')
                                                     is-invalid
                                                 @enderror"
-                                                    id="user-name" placeholder="Your Email" name="email">
+                                                    id="user-name" placeholder="Your Username" name="name">
                                                 <div class="form-control-position">
                                                     <i class="ft-user"></i>
                                                 </div>
-                                                @error('email')
-                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                @error('name')
+                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
                                                 @enderror
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">

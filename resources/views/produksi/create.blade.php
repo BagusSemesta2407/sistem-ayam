@@ -41,7 +41,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <h5>Keterangan</h5>
-                                                    <h5>Busuk</h5>
+                                                    <h5 >Normal</h5>
+                                                    <div class="controls">
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control touchspin" name="status_normal" value="Normal" />
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="mt-2">Busuk</h5>
                                                     <div class="controls">
                                                         <div class="input-group">
                                                             <input type="number" class="form-control touchspin" name="status_busuk" value="Busuk" />
