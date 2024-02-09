@@ -6,7 +6,9 @@ use App\Models\Ayam;
 use App\Models\Barang;
 use App\Models\Inventaris;
 use App\Models\Kandang;
+use App\Models\PemasukanAyam;
 use App\Models\PemasukanInventaris;
+use App\Models\PengeluaranAyam;
 use App\Models\PengeluaranBarang;
 use App\Models\PengeluaranInventaris;
 use Illuminate\Http\Request;
@@ -271,4 +273,62 @@ class PengeluaranController extends Controller
 
         return redirect()->route('pengeluaran.pengeluaran-inventaris', $kandangId)->with('success', 'Pengeluaran deleted successfully.');
     }
+
+    public function pengeluaranAyam($kandangId)
+    {
+        $kandang = Kandang::find($kandangId);
+        $pengeluaranAyam = PengeluaranAyam::with('pemasukanAyam')
+        ->whereHas('pemasukanAyam', function($q) use ($kandang){
+            $q->where('kandang_id', $kandang->id);
+        })->get();
+
+        return view('pengeluaran.pengeluaran-ayam.index', [
+            'pengeluaranAyam' => $pengeluaranAyam,
+            'kandang' => $kandang
+        ]);
+    }
+
+    public function createPengeluaranAyam($kandangId)
+    {
+        $kandang = Kandang::find($kandangId);
+        $pemasukanAyam = PemasukanAyam::where('kandang_id', $kandang->id)->where('status', 'Hidup')->get();
+
+        return view('pengeluaran.pengeluaran-ayam.create', [
+            'kandang' => $kandang,
+            'pemasukanAyam' => $pemasukanAyam
+        ]);
+    }
+
+    public function storePengeluaranAyam(Request $request, $kandangId)
+    {
+        $tanggalKeluar = $request->tanggal_keluar;
+        $pemasukanAyamId = $request->pemasukan_ayam_id;
+
+        foreach ($pemasukanAyamId as $item) {
+            PengeluaranAyam::create([
+                'pemasukan_ayam_id' => $item,
+                'tanggal_keluar' => $tanggalKeluar
+            ]);
+
+            PemasukanAyam::where('id', $item)->update([
+                'status' => 'Dijual'
+            ]);
+        }
+
+        return redirect()->route('pengeluaran.pengeluaran-ayam', $kandangId);
+    }
+
+    public function destroyPengeluaranAyam($pemasukanAyamId)
+    {
+        $pengeluaranAyam = PengeluaranAyam::find($pemasukanAyamId);
+
+        PemasukanAyam::where('id', $pengeluaranAyam->pemasukan_ayam_id)->update([
+            'status' => 'Hidup'
+        ]);
+
+        $pengeluaranAyam->delete();
+
+        return response()->json(['success', 'Data berhasil dihapus']);
+    }
+
 }

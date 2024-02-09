@@ -19,8 +19,7 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('kelola-produksi.request-tanggal') }}" method="post">
-                                    @csrf
+                                <form class="form" action="{{ route('kelola-produksi.request-tanggal') }}" method="get">
                                     <div class="form-body">
                                         <div class="form-group">
                                             <label for="eventRegInput1">Pilih Tanggal Masuk</label>

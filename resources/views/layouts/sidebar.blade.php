@@ -49,7 +49,7 @@
                     <a href="">
                         <i class="icon-grid"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">
-                            Pemasukan Inventaris
+                            Inventaris
                         </span>
                     </a>
                     <ul class="menu-content">
@@ -79,7 +79,7 @@
                     <a href="">
                         <i class="icon-grid"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">
-                            Pemasukan Ayam
+                            Ayam
                         </span>
                     </a>
                     <ul class="menu-content">
@@ -92,13 +92,13 @@
                         <li class="{{ request()->is('kelola-pemasukan-ayam*') ? 'active' : '' }}">
                             <a class="menu-item" href="{{ route('kelola-pemasukan-ayam.form-tanggal') }}"
                                 data-i18n="nav.dash.crm">
-                                Kelola Pemasukan Ayam
+                                Kelola Ayam
                             </a>
                         </li>
                         <li class="{{ request()->is('laporan-pemasukan-ayam*') ? 'active' : '' }}">
                             <a class="menu-item" href="{{ route('laporan-pemasukan-ayam.report-pemasukan-ayam') }}"
                                 data-i18n="nav.dash.crm">
-                                Laporan Pemasukan Ayam
+                                Laporan Ayam
                             </a>
                         </li>
                     </ul>
@@ -122,7 +122,7 @@
                     <a href="">
                         <i class="icon-social-dropbox"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">
-                            Produksi
+                            Data Produksi
                         </span>
                     </a>
                     <ul class="menu-content">

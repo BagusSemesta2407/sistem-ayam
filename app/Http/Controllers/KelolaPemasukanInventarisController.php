@@ -17,25 +17,21 @@ class KelolaPemasukanInventarisController extends Controller
     public function requestTimeIndex(TanggalPemasukanInventarisRequest $request)
     {
         $pemasukanInventaris = PemasukanInventaris::where('waktu', $request->waktu)->get();
-
-        return view('pemasukan-inventaris.data', [
-            'pemasukanInventaris' => $pemasukanInventaris
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        $pemasukanInventaris = PemasukanInventaris::find($id);
         $inventaris = Inventaris::all();
-
-        return view('pemasukan-inventaris.edit', [
+        return view('pemasukan-inventaris.data', [
             'pemasukanInventaris' => $pemasukanInventaris,
-            'inventaris' => $inventaris
+            'inventaris' => $inventaris,
+            'request' => $request
         ]);
     }
+
+    public function pemasukanInventarisId($pemasukanInventarisId)
+    {
+        $pemasukanInventaris = PemasukanInventaris::findOrFail($pemasukanInventarisId);
+        return response()->json($pemasukanInventaris);
+    }
+
+    
 
     /**
      * Update the specified resource in storage.
@@ -51,7 +47,7 @@ class KelolaPemasukanInventarisController extends Controller
 
         PemasukanInventaris::where('id', $id)->update($data);
 
-        return redirect()->route('kelola-pemasukan-inventaris.request-time-index');
+        return redirect()->back()->withSuccess('Data berhasil diubah');
     }
 
     /**

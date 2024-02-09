@@ -15,28 +15,18 @@
 google.load('visualization', '1.0', {'packages':['corechart']});
 
 // Set a callback to run when the Google Visualization API is loaded.
-google.setOnLoadCallback(drawBarStacked);
+google.setOnLoadCallback(loadChartData);
 
 // Callback that creates and populates a data table, instantiates the pie chart, passes in the data and draws it.
-function drawBarStacked() {
-
-    // Create the data table.
-    var data = google.visualization.arrayToDataTable([
-        ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General', 'Western', { role: 'annotation' } ],
-        ['2000', 10, 15, 25, 35, 45, ''],
-        ['2010', 12, 20, 25, 32, 36, ''],
-        ['2020', 5, 24, 20, 34, 17, ''],
-        ['2030', 18, 25, 30, 38, 24, ''],
-        ['2040', 16, 22, 23, 28, 15, ''],
-        ['2050', 8, 26, 20, 42, 30, ''],
-        ['2060', 24, 17, 24, 35, 14, '']
-    ]);
+function drawBarStacked(data) {
+    // Create the data table using the fetched data.
+    var chartData = google.visualization.arrayToDataTable(data);
 
     // Set chart options
     var options_bar_stacked = {
         height: 400,
         fontSize: 12,
-        colors: ['#99B898','#FECEA8', '#FF847C', '#E84A5F', '#474747'],
+        colors: ['#99B898', '#FECEA8', '#FF847C', '#E84A5F', '#474747', '#4287f5'],
         chartArea: {
             left: '5%',
             width: '90%',
@@ -44,7 +34,7 @@ function drawBarStacked() {
         },
         isStacked: true,
         hAxis: {
-            gridlines:{
+            gridlines: {
                 color: '#e9e9e9',
                 count: 10
             },
@@ -61,10 +51,23 @@ function drawBarStacked() {
 
     // Instantiate and draw our chart, passing in some options.
     var bar = new google.visualization.BarChart(document.getElementById('stacked-bar-chart'));
-    bar.draw(data, options_bar_stacked);
-
+    bar.draw(chartData, options_bar_stacked);
 }
 
+function loadChartData() {
+    $.ajax({
+        url: '/laporan-produksi/getChartData',
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            drawBarStacked(response.data);
+            console.log(response.data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
 
 // Resize chart
 // ------------------------------

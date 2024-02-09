@@ -29,6 +29,7 @@ class PemasukanAyamController extends Controller
 
             $pemasukanAyam->kandang_id = $requestData['kandang_id'];
             $pemasukanAyam->tanggal_masuk = $requestData['tanggal_masuk'];
+            $pemasukanAyam->status = 'Hidup';
 
             $pemasukanAyam->save();
 

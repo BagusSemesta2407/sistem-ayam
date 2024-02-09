@@ -58,8 +58,18 @@ class ProduksiController extends Controller
                 'status' => 'Jumbo'
             ]);
         }
+        if ($request['status_putih']) {
+            Produksi::create([
+                'kandang_id' => $request->kandang_id,
+                'tanggal' => $request->tanggal,
+                'kuantitas' => $request->status_putih,
+                'status' => 'Putih'
+            ]);
+        }
 
         return redirect()->back()->withSuccess('Data berhasil ditambahkan');
         
     }
+
+    
 }

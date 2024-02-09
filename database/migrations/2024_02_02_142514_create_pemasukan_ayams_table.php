@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('kandang_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('kode_ayam')->nullable();
             $table->date('tanggal_masuk')->nullable();
+            $table->enum('status',['Hidup', 'Dijual'])->nullable();
             $table->timestamps();
         });
     }

@@ -52,10 +52,10 @@ Route::group([
     'prefix' => 'kelola-pemasukan-inventaris'
 ], function () {
     Route::get('time-index', [KelolaPemasukanInventarisController::class, 'timeIndex'])->name('time-index');
-    Route::post('time-index', [KelolaPemasukanInventarisController::class, 'requestTimeIndex'])->name('request-time-index');
-    Route::get('time-index/edit/{id}', [KelolaPemasukanInventarisController::class, 'edit'])->name('edit-pemasukan-inventaris');
-    Route::post('time-index/edit/{id}', [KelolaPemasukanInventarisController::class, 'update'])->name('update-pemasukan-inventaris');
-    Route::delete('time-index/delete/{id}', [KelolaPemasukanInventarisController::class, 'destroy'])->name('destroy-pemasukan-inventaris');
+    Route::get('data', [KelolaPemasukanInventarisController::class, 'requestTimeIndex'])->name('data-pemasukan-inventaris');
+    Route::get('data/{pemasukanInventarisId?}', [KelolaPemasukanInventarisController::class, 'pemasukanInventarisId'])->name('get-pemasukan-inventaris-id');
+    Route::post('data/{pemasukanInventarisId}', [KelolaPemasukanInventarisController::class, 'update'])->name('update-pemasukan-inventaris');
+    Route::delete('data/{pemasukanInventarisId}', [KelolaPemasukanInventarisController::class, 'destroy'])->name('destroy-pemasukan-inventaris');
 });
 
 Route::group([
@@ -63,6 +63,7 @@ Route::group([
     'prefix' => 'laporan-pemasukan-inventaris'
 ], function () {
     Route::get('report', [LaporanPemasukanInventarisController::class, 'index'])->name('report-pemasukan-inventaris');
+    Route::get('getChartData', [LaporanPemasukanInventarisController::class, 'getChartData'])->name('getChart');
 });
 
 Route::group([
@@ -78,7 +79,10 @@ Route::group([
     'prefix' => 'kelola-pemasukan-ayam'
 ], function () {
     Route::get('form-tanggal', [KelolaPemasukanAyamController::class, 'formTanggal'])->name('form-tanggal');
-    Route::post('form-tanggal', [KelolaPemasukanAyamController::class, 'requestTanggal'])->name('request-tanggal');
+    Route::get('data', [KelolaPemasukanAyamController::class, 'requestTanggal'])->name('data-pemasukan-ayam');
+    Route::get('data/{pemasukanAyamId?}', [KelolaPemasukanAyamController::class, 'pemasukanAyamId'])->name('get-pemasukan-ayam-id');
+    Route::post('data/{pemasukanAyamId}', [KelolaPemasukanAyamController::class, 'updatePemasukanAyam'])->name('update-pemasukan-ayam');
+    Route::delete('data/{pemasukanAyamId}', [KelolaPemasukanAyamController::class, 'destroyPemasukanAyam'])->name('destroy-pemasukan-ayam');
 });
 
 Route::group([
@@ -86,6 +90,7 @@ Route::group([
     'prefix' => 'laporan-pemasukan-ayam'
 ], function () {
     Route::get('report', [LaporanPemasukanAyamController::class, 'index'])->name('report-pemasukan-ayam');
+    Route::get('getChartData', [LaporanPemasukanAyamController::class, 'getChartData'])->name('getChart');
 });
 
 Route::group(
@@ -111,6 +116,11 @@ Route::group(
         Route::get('inventaris/edit/{kandangId}/{pengeluaranInventarisId}', [PengeluaranController::class, 'editPengeluaranInventaris'])->name('edit-pengeluaran-inventaris');
         Route::post('inventaris/edit/{kandangId}/{pengeluaranInventarisId}', [PengeluaranController::class, 'updatePengeluaranInventaris'])->name('update-pengeluaran-inventaris');
         Route::delete('inventaris/delete/{kandangId}/{pengeluaranInventarisId}', [PengeluaranController::class, 'destroyPengeluaranInventaris'])->name('destroy-pengeluaran-inventaris');
+        //pengeluaran ayam
+        Route::get('ayam/{kandangId}', [PengeluaranController::class, 'pengeluaranAyam'])->name('pengeluaran-ayam');
+        Route::get('ayam/create/{kandangId}', [PengeluaranController::class, 'createPengeluaranAyam'])->name('create-pengeluaran-ayam');
+        Route::post('ayam/create/{kandangId}', [PengeluaranController::class, 'storePengeluaranAyam'])->name('store-pengeluaran-ayam');
+        Route::delete('ayam/delete/{pengeluaranAyamId}', [PengeluaranController::class, 'destroyPengeluaranAyam'])->name('destroy-pengeluaran-ayam');
     }
 );
 
@@ -127,7 +137,10 @@ Route::group([
     'prefix' => 'kelola-produksi'
 ], function () {
     Route::get('form-tanggal', [KelolaProduksiController::class, 'formTanggal'])->name('form-tanggal');
-    Route::post('data', [KelolaProduksiController::class, 'requestTanggal'])->name('request-tanggal');
+    Route::get('data', [KelolaProduksiController::class, 'requestTanggal'])->name('request-tanggal');
+    Route::get('data/{produksiId?}', [KelolaProduksiController::class, 'produksiId'])->name('get-produksi-id');
+    Route::post('data/{produksiId}', [KelolaProduksiController::class, 'updateProduksi'])->name('update-produksi');
+    Route::delete('data/{produksiId}', [KelolaProduksiController::class, 'destroyProduksi'])->name('destroy-produksi');
 });
 
 Route::group([
@@ -135,4 +148,5 @@ Route::group([
     'prefix' => 'laporan-produksi',
 ], function () {
     Route::get('report', [LaporanProduksiController::class, 'index'])->name('report');
+    Route::get('getChartData', [LaporanProduksiController::class, 'getChartData'])->name('getChart');
 });

@@ -22,6 +22,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/extensions/unslider.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/weather-icons/climacons.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/extensions/toastr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/tables/datatable/datatables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/tables/extensions/autoFill.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/tables/extensions/colReorder.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/tables/extensions/fixedColumns.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/tables/datatable/select.dataTables.min.css') }}">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}">
@@ -170,6 +175,11 @@
             @endif ()
         })
     </script>
+    <script src="{{ asset('assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/tables/datatable/dataTables.autoFill.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/tables/datatable/dataTables.colReorder.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/tables/datatable/dataTables.fixedColumns.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/tables/datatable/dataTables.select.min.js') }}"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="{{ asset('assets/vendors/js/menu/jquery.mmenu.all.min.js') }}"></script>
@@ -186,6 +196,7 @@
     <script src="{{ asset('assets/vendors/js/timeline/horizontal-timeline.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/extensions/unslider-min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/extensions/dropzone.min.js') }}"></script>
+    <script src="https://www.google.com/jsapi"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <script src="{{ asset('assets/js/core/app-menu.js') }}"></script>
@@ -194,6 +205,8 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="{{ asset('assets/js/scripts/pages/dashboard-crm.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/forms/input-groups.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts/tables/datatables-extensions/datatable-autofill.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/scripts/charts/google/bar/bar-stacked.js') }}"></script> --}}
     <!-- END PAGE LEVEL JS-->
 
     @yield('script')
