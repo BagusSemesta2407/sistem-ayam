@@ -3,6 +3,57 @@
     Data Kandang
 @endsection
 @section('content')
+    <div class="card mt-2">
+        <div class="card-content collapse show">
+            <div class="card-body">
+                <form action="{{ route('laporan-pemasukan-ayam.data-pemasukan-ayam') }}" class="form-horizontal"
+                    style="padding-bottom: 10px;border-bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <label for="startDate" class="label-control">
+                                Tanggal Awal
+                            </label>
+
+                            <input type="date" class="form-control" name="startDate" id="startDate"
+                                value="{{ old('startDate', request()->startDate) }}" placeholder="Tanggal Awal">
+                        </div>
+
+                        <div class="col-md-2 col-sm-12">
+                            <label for="endDate" class="label-control">
+                                Tanggal Akhir
+                            </label>
+
+                            <input type="date" class="form-control" name="endDate" id="endDate"
+                                value="{{ old('endDate', request()->endDate) }}" placeholder="Tanggal Akhir">
+                        </div>
+
+                        <div class="col-md-2 col-sm-12">
+                            <label for="kandang_id" class="label-control">
+                                Kandang
+                            </label>
+
+                            <select name="kandang_id" class="form-control" id="kandang_id">
+                                <option value="" selected>
+                                    Pilih Kandang
+                                </option>
+
+                                @foreach ($kandang as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ request()->kandang_id ? (request()->kandang_id == $item->id ? 'selected' : '') : '' }}>
+                                        {{ $item->kode_kandang }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 d-flex mt-auto">
+                            <button type="submit" class="btn btn-info btn-block">Cari</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="content-body mt-2">
         <section id="google-bar-charts">
             <div class="row">
@@ -51,9 +102,8 @@
                                             <th>No</th>
                                             <th>Kandang</th>
                                             <th>Jenis Ayam</th>
-                                            <th>Kode Ayam</th>
                                             <th>Tanggal Masuk</th>
-                                            <th>Status</th>
+                                            <th>Kuantitas</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,18 +112,9 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->kandang->kode_kandang }}</td>
                                                 <td>{{ $item->kandang->ayam->jenis }}</td>
-                                                <td>{{ $item->kode_ayam }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($item->waktu)->translatedFormat('d F Y') }}
+                                                <td>{{ $item->kuantitas }}</td>
                                                 </td>
-                                                @if ($item->status == 'Dijual')
-                                                    <td>
-                                                        Ayam Sudah Tidak Bertelur
-                                                    </td>
-                                                @else
-                                                <td>
-                                                    Hidup
-                                                </td>
-                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

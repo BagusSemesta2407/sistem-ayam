@@ -27,5 +27,11 @@ class PemasukanInventaris extends Model
     {
         return $this->belongsTo(Inventaris::class);
     }
-    
+
+    public function scopeFilter($q, $filter)
+    {
+        $q->when($filter->inventaris_id ?? false, fn($q, $inventarisId) => $q->where('inventaris_id', $inventarisId));
+        $q->when($filter->startDate ?? false, fn($q, $startDate) => $q->where('waktu', '>=', $startDate)); 
+        $q->when($filter->endDate ?? false, fn($q, $endDate) => $q->where('waktu', '<=', $endDate)); 
+    }
 }

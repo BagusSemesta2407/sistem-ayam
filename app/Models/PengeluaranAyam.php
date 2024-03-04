@@ -18,12 +18,12 @@ class PengeluaranAyam extends Model
     protected $guarded = ['id'];
 
     /**
-     * Get the pemasukanAyam that owns the PengeluaranAyam
+     * Get the kandang that owns the PengeluaranAyam
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function pemasukanAyam(): BelongsTo
+    public function kandang(): BelongsTo
     {
-        return $this->belongsTo(PemasukanAyam::class);
+        return $this->belongsTo(Kandang::class);
     }
 }

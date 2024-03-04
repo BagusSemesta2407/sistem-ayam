@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kandang_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('kode_ayam')->nullable();
+            $table->integer('kuantitas')->nullable();
             $table->date('tanggal_masuk')->nullable();
-            $table->enum('status',['Hidup', 'Dijual'])->nullable();
+            // $table->enum('status',['Hidup', 'Dijual'])->nullable();
             $table->timestamps();
         });
     }

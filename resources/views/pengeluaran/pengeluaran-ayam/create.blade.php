@@ -20,15 +20,16 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" id="form" action="{{ route('pengeluaran.store-pengeluaran-ayam', $kandang) }}" enctype="multipart/form-data"
-                                    method="POST">
+                                <form class="form" id="form"
+                                    action="{{ route('pengeluaran.store-pengeluaran-ayam', $kandang) }}"
+                                    enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12">
                                             <div class="form-body">
                                                 <div class="form-group">
-                                                    <label for="eventInput1">Tanggal Keluar</label>
-                                                    <input type="date" id="eventInput1"
+                                                    <label for="tanggal_keluar">Tanggal Keluar</label>
+                                                    <input type="date" id="tanggal_keluar"
                                                         class="form-control @error('tanggal_keluar')
                                                         is-invalid
                                                     @enderror"
@@ -39,15 +40,23 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="">List Ayam</label>
-                                                    @foreach ($pemasukanAyam as $item)
-                                                        <fieldset class="checkboxsas">
-                                                            <label>
-                                                                <input type="checkbox" value="{{ $item->id }}" name="pemasukan_ayam_id[]">
-                                                                {{ $item->kode_ayam }}
-                                                            </label>
-                                                        </fieldset>
-                                                    @endforeach
+                                                    <label for="jumlah_keluar">Jumlah Keluar</label>
+                                                    <div class="controls">
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control touchspin @error('jumlah_keluar')
+                                                                is-invalid
+                                                            @enderror" name="jumlah_keluar"  />
+
+                                                        </div>
+                                                        @error('jumlah_keluar')
+                                                            <span class="text-danger">{{ $errors->first('jumlah_keluar') }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="keterangan">Keterangan</label>
+                                                    <textarea name="keterangan" id="keterangan" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>

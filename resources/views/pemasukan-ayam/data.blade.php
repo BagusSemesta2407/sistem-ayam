@@ -36,7 +36,7 @@
                                             <th>No</th>
                                             <th>Kandang</th>
                                             <th>Jenis Ayam</th>
-                                            <th>Kode Ayam</th>
+                                            <th>Kuantitas</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -46,7 +46,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->kandang->kode_kandang }}</td>
                                                 <td>{{ $item->kandang->ayam->jenis }}</td>
-                                                <td>{{ $item->kode_ayam }}</td>
+                                                <td>{{ $item->kuantitas }}</td>
                                                 <td class="d-flex">
                                                     <a id="edit"
                                                         href="{{ route('kelola-pemasukan-ayam.get-pemasukan-ayam-id', $item->id) }}">
@@ -91,8 +91,9 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form" action="{{ route('kelola-pemasukan-ayam.update-pemasukan-ayam', ['pemasukanAyamId' => $item->id]) }}" enctype="multipart/form-data" method="POST"
-                                            id="form">
+                                        <form class="form"
+                                            action="{{ route('kelola-pemasukan-ayam.update-pemasukan-ayam', ['pemasukanAyamId' => $item->id]) }}"
+                                            enctype="multipart/form-data" method="POST" id="form">
                                             @csrf
                                             <div class="row justify-content-md-center">
                                                 <div class="col-md-12">
@@ -110,12 +111,6 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="eventInput1">Kode Ayam</label>
-                                                            <input type="text" id="eventInput1"
-                                                                class="form-control" name="kode_ayam" disabled>
-                                                        </div>
-
-                                                        <div class="form-group">
                                                             <label for="eventInput1">Tanggal Masuk</label>
                                                             <input type="date" id="eventInput1"
                                                                 class="form-control @error('tanggal_masuk')
@@ -129,6 +124,11 @@
                                                             @enderror
                                                         </div>
 
+                                                        <div class="form-group">
+                                                            <label for="eventInput1">Kode Ayam</label>
+                                                            <input type="text" id="eventInput1" class="form-control"
+                                                                name="kuantitas">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -171,7 +171,7 @@
                     success: function(data) {
                         $('#form select[name="kandang_id"]').val(data.kandang_id);
                         $('#form input[name="tanggal_masuk"]').val(data.tanggal_masuk);
-                        $('#form input[name="kode_ayam"]').val(data.kode_ayam);
+                        $('#form input[name="kuantitas"]').val(data.kuantitas);
 
                         $('#formEdit').show();
                         $('#form').attr('action', '/kelola-pemasukan-ayam/data/' + itemId);

@@ -67,4 +67,14 @@ class Kandang extends Model
     {
         return $this->hasMany(Produksi::class);
     }
+
+    /**
+     * Get all of the pengeluaranAyam for the Kandang
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pengeluaranAyam(): HasMany
+    {
+        return $this->hasMany(PengeluaranAyam::class);
+    }
 }

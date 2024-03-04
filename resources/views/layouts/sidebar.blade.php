@@ -67,7 +67,7 @@
                         </li>
                         <li class="{{ request()->is('laporan-pemasukan-inventaris*') ? 'active' : '' }}">
                             <a class="menu-item"
-                                href="{{ route('laporan-pemasukan-inventaris.report-pemasukan-inventaris') }}"
+                                href="{{ route('laporan-pemasukan-inventaris.form-tanggal') }}"
                                 data-i18n="nav.dash.crm">
                                 Laporan Inventaris
                             </a>

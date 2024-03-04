@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('pengeluaran.post-pengeluaran-barang', $kandang) }}" enctype="multipart/form-data"
+                                <form class="form" id="form" action="{{ route('pengeluaran.post-pengeluaran-barang', $kandang) }}" enctype="multipart/form-data"
                                     method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
@@ -48,7 +48,7 @@
                                     </div>
 
                                     <div class="form-actions center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">
                                             <i class="fa fa-check-square-o"></i> Save
                                         </button>
                                     </div>

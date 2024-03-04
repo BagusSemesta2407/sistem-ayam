@@ -20,28 +20,8 @@ class PemasukanAyamController extends Controller
 
     public function store(PemasukanAyamRequest $request)
     {
-        $requestData = $request->all();
-
-        $pemasukanAyamList = []; 
-
-        for ($i = 0; $i < $requestData['jumlah_ayam']; $i++) {
-            $pemasukanAyam = new PemasukanAyam;
-
-            $pemasukanAyam->kandang_id = $requestData['kandang_id'];
-            $pemasukanAyam->tanggal_masuk = $requestData['tanggal_masuk'];
-            $pemasukanAyam->status = 'Hidup';
-
-            $pemasukanAyam->save();
-
-            $pemasukanAyamList[] = $pemasukanAyam; 
-        }
-
-        foreach ($pemasukanAyamList as $item) {
-            $item->update([
-                'kode_ayam' => 'AM-' . sprintf("%04d", $item->id)
-            ]);
-        }
-
+        PemasukanAyam::create($request->all());
+       
         return redirect()->back()->withSuccess('Data berhasil ditambahkan');
     }
 }

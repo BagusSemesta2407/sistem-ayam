@@ -105,7 +105,7 @@ class PengeluaranController extends Controller
 
             DB::commit();
 
-            return redirect()->route('pengeluaran.pengeluaran-barang', $kandangId)->with('success', 'Stock updated successfully.');
+            return redirect()->route('pengeluaran.pengeluaran-barang', $kandangId)->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
             DB::rollback();
 
@@ -157,7 +157,7 @@ class PengeluaranController extends Controller
             'jumlah_pengeluaran' => $newJumlahPengeluaran,
         ]);
 
-        return redirect()->route('pengeluaran.pengeluaran-barang', $kandangId);
+        return redirect()->route('pengeluaran.pengeluaran-barang', $kandangId)->with('success', 'Data berhasil diubah');
     }
 
 
@@ -226,7 +226,7 @@ class PengeluaranController extends Controller
             'kandang_id' => $kandangId,
             'inventaris_id' => $request->inventaris_id,
             'waktu' => $request->waktu,
-            'kuantitas' => $request->kuantitas 
+            'kuantitas' => $request->kuantitas
         ]);
 
         return redirect()->route('pengeluaran.pengeluaran-inventaris', $kandangId);
@@ -242,7 +242,7 @@ class PengeluaranController extends Controller
         $kandang = Kandang::find($kandangId);
         $inventaris = Inventaris::all();
 
-        return view('pengeluaran.pengeluaran-inventaris.edit',[
+        return view('pengeluaran.pengeluaran-inventaris.edit', [
             'pengeluaranInventaris' => $pengeluaranInventaris,
             'kandang' => $kandang,
             'inventaris' => $inventaris
@@ -258,7 +258,7 @@ class PengeluaranController extends Controller
         $data = [
             'inventaris_id' => $request->inventaris_id,
             'waktu' => $request->waktu,
-            'kuantitas' => $request->kuantitas 
+            'kuantitas' => $request->kuantitas
         ];
 
         PengeluaranInventaris::where('id', $pengeluaranInventarisId)->update($data);
@@ -277,10 +277,8 @@ class PengeluaranController extends Controller
     public function pengeluaranAyam($kandangId)
     {
         $kandang = Kandang::find($kandangId);
-        $pengeluaranAyam = PengeluaranAyam::with('pemasukanAyam')
-        ->whereHas('pemasukanAyam', function($q) use ($kandang){
-            $q->where('kandang_id', $kandang->id);
-        })->get();
+
+        $pengeluaranAyam = PengeluaranAyam::where('kandang_id', $kandang->id)->get();
 
         return view('pengeluaran.pengeluaran-ayam.index', [
             'pengeluaranAyam' => $pengeluaranAyam,
@@ -291,29 +289,42 @@ class PengeluaranController extends Controller
     public function createPengeluaranAyam($kandangId)
     {
         $kandang = Kandang::find($kandangId);
-        $pemasukanAyam = PemasukanAyam::where('kandang_id', $kandang->id)->where('status', 'Hidup')->get();
 
         return view('pengeluaran.pengeluaran-ayam.create', [
             'kandang' => $kandang,
-            'pemasukanAyam' => $pemasukanAyam
         ]);
     }
 
     public function storePengeluaranAyam(Request $request, $kandangId)
     {
-        $tanggalKeluar = $request->tanggal_keluar;
-        $pemasukanAyamId = $request->pemasukan_ayam_id;
+        PengeluaranAyam::create([
+            'kandang_id' => $kandangId,
+            'jumlah_keluar' => $request->jumlah_keluar,
+            'tanggal_keluar' => $request->tanggal_keluar,
+            'keterangan' => $request->keterangan
+        ]);
 
-        foreach ($pemasukanAyamId as $item) {
-            PengeluaranAyam::create([
-                'pemasukan_ayam_id' => $item,
-                'tanggal_keluar' => $tanggalKeluar
-            ]);
+        return redirect()->route('pengeluaran.pengeluaran-ayam', $kandangId);
+    }
 
-            PemasukanAyam::where('id', $item)->update([
-                'status' => 'Dijual'
-            ]);
-        }
+    public function editPengeluaranAyam($kandangId, $pengeluaranAyamId)
+    {
+        $pengeluaranAyam = PengeluaranAyam::find($pengeluaranAyamId);
+        $kandang = Kandang::find($kandangId);
+
+        return view('pengeluaran.pengeluaran-ayam.edit', [
+            'kandang' => $kandang,
+            'pengeluaranAyam' => $pengeluaranAyam
+        ]);
+    }
+
+    public function updatePengeluaranAyam(Request $request, $kandangId, $pengeluaranAyamId)
+    {
+        PengeluaranAyam::where('id', $pengeluaranAyamId)->update([
+            'jumlah_keluar' => $request->jumlah_keluar,
+            'tanggal_keluar' => $request->tanggal_keluar,
+            'keterangan' => $request->keterangan
+        ]);
 
         return redirect()->route('pengeluaran.pengeluaran-ayam', $kandangId);
     }
@@ -322,13 +333,8 @@ class PengeluaranController extends Controller
     {
         $pengeluaranAyam = PengeluaranAyam::find($pemasukanAyamId);
 
-        PemasukanAyam::where('id', $pengeluaranAyam->pemasukan_ayam_id)->update([
-            'status' => 'Hidup'
-        ]);
-
         $pengeluaranAyam->delete();
 
         return response()->json(['success', 'Data berhasil dihapus']);
     }
-
 }

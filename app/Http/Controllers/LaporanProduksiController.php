@@ -12,8 +12,23 @@ class LaporanProduksiController extends Controller
     {
         $produksi = Produksi::all();
 
-        return view('produksi.report', [
+        return view('produksi.form', [
             'produksi' => $produksi
+        ]);
+    }
+
+    public function data(Request $request)
+    {
+        $filter = (object)[
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate,
+            'status' => $request->status
+        ];
+
+        $produksi =Produksi::filter($filter)->get();
+
+        return view('produksi.report', [
+            'produksi' => $produksi,
         ]);
     }
 

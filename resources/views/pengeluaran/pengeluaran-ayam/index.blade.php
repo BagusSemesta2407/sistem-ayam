@@ -28,8 +28,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Ayam</th>
                                             <th>Tanggal Keluar</th>
+                                            <th>Jumlah Keluar Ayam</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -37,9 +37,13 @@
                                         @foreach ($pengeluaranAyam as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->pemasukanAyam->kode_ayam }}</td>
                                                 <td>{{ $item->tanggal_keluar }}</td>
+                                                <td>{{ $item->jumlah_keluar }}</td>
                                                 <td class="d-flex">
+                                                    <a href="{{ route('pengeluaran.edit-pengeluaran-ayam', [$kandang, $item->id]) }}">
+                                                        <button type="button" class="btn btn-icon btn-warning mr-1"><i
+                                                                class="fa fa-pencil"></i></button>
+                                                    </a>
                                                     <button class="btn btn-icon btn-danger mr-1 delete"
                                                         data-url="{{ route('pengeluaran.destroy-pengeluaran-ayam', $item->id) }}">
                                                         <i class="fa fa-trash"></i>

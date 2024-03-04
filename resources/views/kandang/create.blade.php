@@ -60,7 +60,7 @@
                                     </div>
 
                                     <div class="form-actions center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">
                                             <i class="fa fa-check-square-o"></i> Save
                                         </button>
                                     </div>

@@ -20,7 +20,8 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" id="form" action="{{ route('barang.update', $barang) }}" enctype="multipart/form-data" method="POST">
+                                <form class="form" id="form" action="{{ route('barang.update', $barang) }}"
+                                    enctype="multipart/form-data" method="POST">
                                     @method('PUT')
                                     @csrf
                                     <div class="row justify-content-md-center">
@@ -28,18 +29,20 @@
                                             <div class="form-group">
                                                 <label for="eventInput1">Nama Barang</label>
                                                 <input type="text" id="eventInput1" class="form-control"
-                                                    placeholder="Masukkan Nama Barang" name="nama" value="{{ old('nama', $barang->nama) }}">
+                                                    placeholder="Masukkan Nama Barang" name="nama"
+                                                    value="{{ old('nama', $barang->nama) }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="eventInput1">Jumlah Barang</label>
                                                 <input type="number" id="eventInput1" class="form-control"
-                                                    placeholder="Masukkan Jumlah Barang" name="jumlah" value="{{ old('jumlah', $barang->jumlah) }}">
+                                                    placeholder="Masukkan Jumlah Barang" name="jumlah"
+                                                    value="{{ old('jumlah', $barang->jumlah) }}">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-actions center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">
                                             <i class="fa fa-check-square-o"></i> Save
                                         </button>
                                     </div>

@@ -31,7 +31,8 @@
                                                     <input type="text" id="eventInput1"
                                                         class="form-control @error('nama')
                                                     is-invalid
-                                                    @enderror" placeholder="Masukkan Nama Makanan/Obat" name="nama">
+                                                    @enderror"
+                                                        placeholder="Masukkan Nama Makanan/Obat" name="nama">
                                                     @error('nama')
                                                         <span class="text-danger">{{ $errors->first('nama') }}</span>
                                                     @enderror
@@ -41,7 +42,7 @@
                                     </div>
 
                                     <div class="form-actions center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">
                                             <i class="fa fa-check-square-o"></i> Save
                                         </button>
                                     </div>

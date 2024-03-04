@@ -2,7 +2,7 @@
 @section('title')
     Pengeluaran
 @endsection
-@section('breadcrumb')
+{{-- @section('breadcrumb')
     <div class="row breadcrumbs-top">
         <div class="breadcrumb-wrapper col-12">
             <ol class="breadcrumb">
@@ -17,7 +17,7 @@
             </ol>
         </div>
     </div>
-@endsection
+@endsection --}}
 @section('content')
     <div class="content-body mt-2">
         <!-- Right Bordered Callouts start -->

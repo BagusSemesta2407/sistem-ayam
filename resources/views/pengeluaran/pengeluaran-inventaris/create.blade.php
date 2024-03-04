@@ -20,8 +20,9 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" action="{{ route('pengeluaran.post-pengeluaran-inventaris', $kandang) }}" enctype="multipart/form-data"
-                                    method="POST">
+                                <form class="form" id="form"
+                                    action="{{ route('pengeluaran.post-pengeluaran-inventaris', $kandang) }}"
+                                    enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12">
@@ -29,7 +30,8 @@
                                                 <div class="form-group">
                                                     <label for="eventInput1">Jenis Inventaris</label>
                                                     <select name="inventaris_id" class="form-control">
-                                                        <option value="" selected disabled>Pilih Jenis Inventaris</option>
+                                                        <option value="" selected disabled>Pilih Jenis Inventaris
+                                                        </option>
                                                         @foreach ($inventaris as $item)
                                                             <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                         @endforeach
@@ -37,18 +39,20 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="eventInput1">Waktu</label>
-                                                    <input type="date" id="eventInput1" class="form-control" name="waktu">
+                                                    <input type="date" id="eventInput1" class="form-control"
+                                                        name="waktu">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="eventInput1">Kuantitas</label>
-                                                    <input type="number" id="eventInput1" class="form-control" name="kuantitas" placeholder="Masukkan Kuantitas">
+                                                    <input type="number" id="eventInput1" class="form-control"
+                                                        name="kuantitas" placeholder="Masukkan Kuantitas">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-actions center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">
                                             <i class="fa fa-check-square-o"></i> Save
                                         </button>
                                     </div>

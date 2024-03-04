@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventaris;
 use App\Models\PemasukanInventaris;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -10,10 +11,27 @@ class LaporanPemasukanInventarisController extends Controller
 {
     public function index()
     {
-        $pemasukanInventaris = PemasukanInventaris::all();
+        $inventaris = Inventaris::get();
 
-        return view('pemasukan-inventaris.report',[
-            'pemasukanInventaris' => $pemasukanInventaris
+        return view('pemasukan-inventaris.form-tanggal', [
+            'inventaris' => $inventaris
+        ]);
+    }
+
+    public function data(Request $request)
+    {
+        $filter = (object)[
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate,
+            'inventaris_id' => $request->inventaris_id
+        ];
+
+        $pemasukanInventaris = PemasukanInventaris::filter($filter)->get();
+        $inventaris = Inventaris::get();
+
+        return view('pemasukan-inventaris.report', [
+            'pemasukanInventaris' => $pemasukanInventaris,
+            'inventaris' => $inventaris
         ]);
     }
 

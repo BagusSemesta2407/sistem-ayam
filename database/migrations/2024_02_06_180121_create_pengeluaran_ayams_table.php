@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('pengeluaran_ayams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pemasukan_ayam_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('kandang_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('tanggal_keluar')->nullable();
+            $table->integer('jumlah_keluar')->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

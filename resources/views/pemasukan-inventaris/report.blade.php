@@ -3,6 +3,57 @@
     Data Pemasukan Inventaris
 @endsection
 @section('content')
+    <div class="card mt-2">
+        <div class="card-content collapse show">
+            <div class="card-body">
+                <form action="{{ route('laporan-pemasukan-inventaris.report-pemasukan-inventaris') }}" class="form-horizontal"
+                    style="padding-bottom: 10px;border-bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <label for="startDate" class="label-control">
+                                Tanggal Awal
+                            </label>
+
+                            <input type="date" class="form-control" name="startDate" id="startDate"
+                                value="{{ old('startDate', request()->startDate) }}" placeholder="Tanggal Awal">
+                        </div>
+
+                        <div class="col-md-2 col-sm-12">
+                            <label for="endDate" class="label-control">
+                                Tanggal Akhir
+                            </label>
+
+                            <input type="date" class="form-control" name="endDate" id="endDate"
+                                value="{{ old('endDate', request()->endDate) }}" placeholder="Tanggal Akhir">
+                        </div>
+
+                        <div class="col-md-2 col-sm-12">
+                            <label for="inventaris_id" class="label-control">
+                                Inventaris
+                            </label>
+
+                            <select name="inventaris_id" class="form-control" id="inventaris_id">
+                                <option value="" selected>
+                                    Pilih Inventaris
+                                </option>
+
+                                @foreach ($inventaris as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ request()->inventaris_id ? (request()->inventaris_id == $item->id ? 'selected' : '') : '' }}>
+                                        {{ $item->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 d-flex mt-auto">
+                            <button type="submit" class="btn btn-info btn-block">Cari</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="content-body mt-2">
         <section id="google-bar-charts">
             <div class="row">

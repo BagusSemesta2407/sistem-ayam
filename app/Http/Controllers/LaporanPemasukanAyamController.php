@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ayam;
+use App\Models\Kandang;
 use App\Models\PemasukanAyam;
+use App\Models\PengeluaranAyam;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -11,10 +13,27 @@ class LaporanPemasukanAyamController extends Controller
 {
     public function index()
     {
-        $pemasukanAyam = PemasukanAyam::all();
+        $kandang = Kandang::all();
+
+        return view('pemasukan-ayam.form', [
+            'kandang' => $kandang
+        ]);
+    }
+
+    public function data(Request $request)
+    {
+        $filter = (object)[
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate,
+            'kandang_id' => $request->kandang_id
+        ];
+
+        $pemasukanAyam = PemasukanAyam::filter($filter)->get();
+        $kandang = Kandang::get();
 
         return view('pemasukan-ayam.report', [
-            'pemasukanAyam' => $pemasukanAyam
+            'pemasukanAyam' => $pemasukanAyam,
+            'kandang' => $kandang
         ]);
     }
 
@@ -37,7 +56,7 @@ class LaporanPemasukanAyamController extends Controller
                     })
                     ->whereMonth('tanggal_masuk', Carbon::parse($month)->month)
                     ->count();
-    
+
                 array_push($rowData, $count);
             }
 

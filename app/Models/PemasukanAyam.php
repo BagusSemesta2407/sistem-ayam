@@ -28,13 +28,10 @@ class PemasukanAyam extends Model
         return $this->belongsTo(Kandang::class);
     }
 
-    /**
-     * Get all of the pengeluaranAyam for the PemasukanAyam
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function pengeluaranAyam(): HasMany
+    public function scopeFilter($q, $filter)
     {
-        return $this->hasMany(PengeluaranAyam::class);
+        $q->when($filter->kandang_id ?? false, fn ($q, $kandangId) => $q->where('kandang_id', $kandangId));
+        $q->when($filter->startDate ?? false, fn ($q, $startDate) => $q->where('tanggal_masuk', '>=', $startDate));
+        $q->when($filter->endDate ?? false, fn ($q, $endDate) => $q->where('tanggal_masuk', '<=', $endDate));
     }
 }

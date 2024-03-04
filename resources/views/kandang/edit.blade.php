@@ -20,7 +20,8 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <form class="form" id="form" action="{{ route('kandang.update', $kandang) }}" enctype="multipart/form-data" method="POST">
+                                <form class="form" id="form" action="{{ route('kandang.update', $kandang) }}"
+                                    enctype="multipart/form-data" method="POST">
                                     @method('PUT')
                                     @csrf
                                     <div class="row justify-content-md-center">
@@ -30,21 +31,24 @@
                                                 <select name="ayam_id" class="form-control">
                                                     <option value="" selected disabled>Pilih Jenis Ayam</option>
                                                     @foreach ($ayam as $item)
-                                                        <option value="{{ $item->id }}" {{ old('ayam_id', $item->id == $kandang->ayam_id ? 'selected' : '') }}>{{ $item->jenis }}</option>
+                                                        <option value="{{ $item->id }}"
+                                                            {{ old('ayam_id', $item->id == $kandang->ayam_id ? 'selected' : '') }}>
+                                                            {{ $item->jenis }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label for="eventInput1">Kapasitas</label>
                                                 <input type="number" id="eventInput1" class="form-control"
-                                                    placeholder="Masukkan Kapasitas" name="kapasitas" value="{{ old('kapasitas', $kandang->kapasitas) }}">
+                                                    placeholder="Masukkan Kapasitas" name="kapasitas"
+                                                    value="{{ old('kapasitas', $kandang->kapasitas) }}">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-actions center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">
                                             <i class="fa fa-check-square-o"></i> Save
                                         </button>
                                     </div>

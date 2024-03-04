@@ -62,7 +62,8 @@ Route::group([
     'as' => 'laporan-pemasukan-inventaris.',
     'prefix' => 'laporan-pemasukan-inventaris'
 ], function () {
-    Route::get('report', [LaporanPemasukanInventarisController::class, 'index'])->name('report-pemasukan-inventaris');
+    Route::get('report', [LaporanPemasukanInventarisController::class, 'index'])->name('form-tanggal');
+    Route::get('data', [LaporanPemasukanInventarisController::class, 'data'])->name('report-pemasukan-inventaris');
     Route::get('getChartData', [LaporanPemasukanInventarisController::class, 'getChartData'])->name('getChart');
 });
 
@@ -90,6 +91,7 @@ Route::group([
     'prefix' => 'laporan-pemasukan-ayam'
 ], function () {
     Route::get('report', [LaporanPemasukanAyamController::class, 'index'])->name('report-pemasukan-ayam');
+    Route::get('data', [LaporanPemasukanAyamController::class, 'data'])->name('data-pemasukan-ayam');
     Route::get('getChartData', [LaporanPemasukanAyamController::class, 'getChartData'])->name('getChart');
 });
 
@@ -120,6 +122,8 @@ Route::group(
         Route::get('ayam/{kandangId}', [PengeluaranController::class, 'pengeluaranAyam'])->name('pengeluaran-ayam');
         Route::get('ayam/create/{kandangId}', [PengeluaranController::class, 'createPengeluaranAyam'])->name('create-pengeluaran-ayam');
         Route::post('ayam/create/{kandangId}', [PengeluaranController::class, 'storePengeluaranAyam'])->name('store-pengeluaran-ayam');
+        Route::get('ayam/edit/{kandangId}/{pengeluaranAyamId}', [PengeluaranController::class, 'editPengeluaranAyam'])->name('edit-pengeluaran-ayam');
+        Route::post('ayam/edit/{kandangId}/{pengeluaranAyamId}', [PengeluaranController::class, 'updatePengeluaranAyam'])->name('update-pengeluaran-ayam');
         Route::delete('ayam/delete/{pengeluaranAyamId}', [PengeluaranController::class, 'destroyPengeluaranAyam'])->name('destroy-pengeluaran-ayam');
     }
 );
@@ -148,5 +152,6 @@ Route::group([
     'prefix' => 'laporan-produksi',
 ], function () {
     Route::get('report', [LaporanProduksiController::class, 'index'])->name('report');
+    Route::get('data', [LaporanProduksiController::class, 'data'])->name('data');
     Route::get('getChartData', [LaporanProduksiController::class, 'getChartData'])->name('getChart');
 });

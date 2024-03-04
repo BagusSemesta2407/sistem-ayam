@@ -28,7 +28,8 @@
                                             <div class="form-body">
                                                 <div class="form-group">
                                                     <label for="eventInput1">Nama Barang</label>
-                                                    <input type="text" id="eventInput1" class="form-control @error('nama')
+                                                    <input type="text" id="eventInput1"
+                                                        class="form-control @error('nama')
                                                         is-invalid
                                                     @enderror "
                                                         placeholder="Masukkan Nama Barang" name="nama">
@@ -38,7 +39,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="eventInput1">Jumlah Barang</label>
-                                                    <input type="number" id="eventInput1" class="form-control @error('jumlah')
+                                                    <input type="number" id="eventInput1"
+                                                        class="form-control @error('jumlah')
                                                         is-invalid
                                                     @enderror"
                                                         placeholder="Masukkan Jumlah Barang" name="jumlah">
@@ -51,7 +53,7 @@
                                     </div>
 
                                     <div class="form-actions center">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">
                                             <i class="fa fa-check-square-o"></i> Save
                                         </button>
                                     </div>

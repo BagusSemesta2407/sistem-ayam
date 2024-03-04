@@ -26,4 +26,11 @@ class Produksi extends Model
     {
         return $this->belongsTo(Kandang::class);
     }
+
+    public function scopeFilter($q, $filter)
+    {
+        $q->when($filter->status ?? false, fn ($q, $status) => $q->where('status', $status));
+        $q->when($filter->startDate ?? false, fn ($q, $startDate) => $q->where('tanggal', '>=', $startDate));
+        $q->when($filter->endDate ?? false, fn ($q, $endDate) => $q->where('tanggal', '<=', $endDate));
+    }
 }

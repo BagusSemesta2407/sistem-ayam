@@ -31,27 +31,31 @@
                                             <th>Kode Kandang</th>
                                             <th>Jenis Ayam</th>
                                             <th>Kapasitas</th>
+                                            <th>Jumlah Ayam</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($kandang as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->kode_kandang }}</td>
-                                            <td>{{ $item->ayam->jenis }}</td>
-                                            <td>{{ $item->kapasitas - $item->pemasukanAyam->sum('kandang_id')  }}</td>
-                                            <td class="d-flex">
-                                                <a href="{{ route('kandang.edit', $item->id) }}">
-                                                    <button type="button" class="btn btn-icon btn-warning mr-1"><i
-                                                            class="fa fa-pencil"></i></button>
-                                                </a>
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->kode_kandang }}</td>
+                                                <td>{{ $item->ayam->jenis }}</td>
+                                                <td>{{ $item->kapasitas }}</td>
+                                                <td>{{ $item->pemasukanAyam->sum('kuantitas') - $item->pengeluaranAyam->sum('jumlah_keluar') }}
+                                                </td>
+                                                <td class="d-flex">
+                                                    <a href="{{ route('kandang.edit', $item->id) }}">
+                                                        <button type="button" class="btn btn-icon btn-warning mr-1"><i
+                                                                class="fa fa-pencil"></i></button>
+                                                    </a>
 
-                                                <button class="btn btn-icon btn-danger mr-1 delete" data-url="{{ route('kandang.destroy', $item->id) }}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                                    <button class="btn btn-icon btn-danger mr-1 delete"
+                                                        data-url="{{ route('kandang.destroy', $item->id) }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

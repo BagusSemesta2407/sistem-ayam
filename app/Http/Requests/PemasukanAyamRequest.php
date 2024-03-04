@@ -24,7 +24,6 @@ class PemasukanAyamRequest extends FormRequest
         $rules = [
             'kandang_id' => 'required',
             'tanggal_masuk' => 'required',
-            'jumlah_ayam' => 'required',
         ];
 
         return $rules;
@@ -35,7 +34,6 @@ class PemasukanAyamRequest extends FormRequest
         return [
             'kandang_id.required' => 'Kandang Wajib Diisi',
             'tanggal_masuk.required' => 'Tanggal Masuk Wajib Diisi',
-            'jumlah_ayam.required' => 'Jumlah Ayam Wajib Diisi'
         ];
     }
 }

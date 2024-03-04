@@ -1,8 +1,68 @@
 @extends('layouts.base')
 @section('title')
-    Data Kandang
+    Data Produksi
 @endsection
 @section('content')
+    <div class="card mt-2">
+        <div class="card-content collapse show">
+            <div class="card-body">
+                <form action="{{ route('laporan-produksi.data') }}" class="form-horizontal"
+                    style="padding-bottom: 10px;border-bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <label for="startDate" class="label-control">
+                                Tanggal Awal
+                            </label>
+
+                            <input type="date" class="form-control" name="startDate" id="startDate"
+                                value="{{ old('startDate', request()->startDate) }}" placeholder="Tanggal Awal">
+                        </div>
+
+                        <div class="col-md-2 col-sm-12">
+                            <label for="endDate" class="label-control">
+                                Tanggal Akhir
+                            </label>
+
+                            <input type="date" class="form-control" name="endDate" id="endDate"
+                                value="{{ old('endDate', request()->endDate) }}" placeholder="Tanggal Akhir">
+                        </div>
+
+                        <div class="col-md-2 col-sm-12">
+                            <label for="status" class="label-control">
+                                Status
+                            </label>
+
+                            <select name="status" class="form-control" id="status">
+                                <option value="" selected disabled>Pilih Status</option>
+                                <option value="Normal"
+                                    {{ request()->status ? (request()->status == 'Normal' ? 'selected' : '') : '' }}>Normal
+                                </option>
+                                <option value="Busuk"
+                                    {{ request()->status ? (request()->status == 'Busuk' ? 'selected' : '') : '' }}>Busuk
+                                </option>
+                                <option value="Pecah"
+                                    {{ request()->status ? (request()->status == 'Pecah' ? 'selected' : '') : '' }}>Pecah
+                                </option>
+                                <option value="Terjual"
+                                    {{ request()->status ? (request()->status == 'Terjual' ? 'selected' : '') : '' }}>
+                                    Terjual</option>
+                                <option value="Jumbo"
+                                    {{ request()->status ? (request()->status == 'Jumbo' ? 'selected' : '') : '' }}>Jumbo
+                                </option>
+                                <option value="Putih"
+                                    {{ request()->status ? (request()->status == 'Putih' ? 'selected' : '') : '' }}>Putih
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 d-flex mt-auto">
+                            <button type="submit" class="btn btn-info btn-block">Cari</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="content-body mt-2">
         <section id="google-bar-charts">
             <div class="row">
@@ -35,7 +95,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Daftar Kandang</h4>
+                            <h4 class="card-title">Daftar Produksi</h4>
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
