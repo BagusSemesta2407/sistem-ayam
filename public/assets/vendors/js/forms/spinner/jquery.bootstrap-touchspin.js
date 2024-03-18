@@ -34,7 +34,6 @@
 
     var defaults = {
       min: 0, // If null, there is no minimum enforced
-      max: 100, // If null, there is no maximum enforced
       initval: '',
       replacementval: '',
       step: 1,
